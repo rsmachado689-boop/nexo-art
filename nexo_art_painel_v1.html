@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101114">
+<title>Nexo Art — Painel</title>
+<style>
+:root{--bg:#0c0d10;--panel:#15171c;--panel2:#1d2027;--line:#2a2d36;--text:#f4f5f7;--muted:#a4a9b5;--accent:#b7f36b;--accent2:#d4ff9c;--danger:#ffcc85}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:1180px;margin:auto;padding:18px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 22px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.5px}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--accent);color:#10140a;font-weight:900}
+.pill{border:1px solid #3a4530;color:var(--accent2);border-radius:999px;padding:6px 10px;font-size:12px}
+.hero{padding:28px 0 20px}.eyebrow{color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1.4px;font-size:11px}.hero h1{font-size:clamp(28px,5vw,43px);line-height:1.08;letter-spacing:-1.3px;margin:8px 0 10px}.hero p{color:var(--muted);max-width:650px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat,.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px}.stat{padding:15px}.stat strong{display:block;font-size:25px}.stat span{font-size:12px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.panel{padding:16px;min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panel h2{font-size:17px;margin:0}.muted{color:var(--muted);font-size:13px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0f1014;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+.searchrow{display:flex;gap:8px;margin-bottom:12px}.searchrow input{flex:1;min-width:0}
+.btn{border:1px solid var(--line);border-radius:10px;padding:10px 13px;background:var(--panel2);color:var(--text);font-weight:650}.btn.primary{background:var(--accent);color:#13170d;border-color:var(--accent)}.btn.small{padding:7px 10px;font-size:12px}.btn:active{transform:translateY(1px)}
+.list{display:flex;flex-direction:column;gap:8px}.company{display:flex;align-items:center;gap:11px;padding:12px;border:1px solid var(--line);background:#111217;border-radius:12px;cursor:pointer}.company.selected{border-color:var(--accent);background:#191e16}.avatar{flex:0 0 38px;width:38px;height:38px;border-radius:11px;background:#282c35;display:grid;place-items:center;font-weight:800;color:var(--accent)}.company-main{min-width:0;flex:1}.company-main strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.company-main span{font-size:12px;color:var(--muted)}.status{font-size:10px;border:1px solid #3b4531;color:var(--accent2);border-radius:999px;padding:4px 7px;white-space:nowrap}
+.detail-empty{display:grid;place-items:center;min-height:290px;text-align:center;color:var(--muted);padding:20px}.detail-empty .bigicon{font-size:38px;margin-bottom:8px}.detail h3{font-size:22px;margin:0 0 4px}.detail-actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.info div{padding:11px;background:#101116;border:1px solid var(--line);border-radius:10px}.info small{display:block;color:var(--muted);font-size:11px}.info b{font-size:13px}
+.notice{border:1px solid #4c3d25;background:#211b12;color:#f2d6a9;border-radius:11px;padding:11px;font-size:12px;margin:12px 0}
+.demo{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:14px;background:#f7f4ee;color:#17231d}.demo-top{padding:11px 14px;background:#e5e9df;display:flex;justify-content:space-between;font-size:11px;color:#4a574a}.demo-body{padding:26px 18px 22px;background:linear-gradient(135deg,#f7f4ee,#e8eee2)}.demo-body .mini-brand{font-size:11px;font-weight:800;letter-spacing:1px;color:#47704a}.demo-body h4{font-size:28px;line-height:1.06;letter-spacing:-.8px;margin:14px 0 9px;max-width:360px}.demo-body p{font-size:12px;color:#5a665d;max-width:330px}.demo-cta{display:inline-block;background:#243d2c;color:white;border-radius:8px;padding:9px 12px;font-size:11px;font-weight:700;margin-top:8px}.demo-features{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:12px}.demo-features div{background:#fff;border:1px solid #e2e4dc;border-radius:8px;padding:10px 6px;font-size:10px;text-align:center;color:#334638}
+.chatbox{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}.chatbox h3{font-size:15px;margin:0 0 5px}.chatline{display:flex;gap:7px;margin-top:9px}.chatline input{min-width:0;flex:1}
+footer{padding:22px 0 10px;color:var(--muted);font-size:11px;text-align:center}
+@media(max-width:780px){.app{padding:13px}.layout{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}.panel{padding:13px}.hero{padding-top:22px}.company{padding:10px}.status{display:none}}
+@media(max-width:380px){.controls{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand"><div class="logo">N</div><div>NEXO ART<div style="font-size:10px;color:var(--muted);font-weight:500;letter-spacing:1.5px">PROSPECÇÃO & SITES</div></div></div><span class="pill">PROTÓTIPO · V1</span></header>
+<section class="hero"><div class="eyebrow">Seu estúdio digital</div><h1>Encontre oportunidades.<br>Crie sites que vendem.</h1><p>Organize empresas, prepare uma demonstração e abra o WhatsApp para apresentar sua proposta. Tudo pensado para funcionar no celular.</p></section>
+<section class="stats"><div class="stat"><strong id="countCompanies">6</strong><span>Empresas de exemplo</span></div><div class="stat"><strong id="countDemos">0</strong><span>Demos criadas nesta sessão</span></div><div class="stat"><strong>R$ 0</strong><span>Custo deste protótipo</span></div></section>
+<div class="layout">
+<section class="panel">
+<div class="panel-head"><h2>Empresas</h2><span class="muted" id="resultCount">6 resultados</span></div>
+<div class="controls"><div class="field"><label for="niche">Nicho</label><select id="niche"><option value="Todos">Todos os nichos</option><option>Dentista</option><option>Academia</option><option>Pet shop</option><option>Tatuador</option></select></div><div class="field"><label for="city">Cidade</label><select id="city"><option value="Todas">Todas as cidades</option><option>Porto Alegre</option><option>Canoas</option></select></div></div>
+<div class="searchrow"><input id="search" placeholder="Buscar empresa..." aria-label="Buscar empresa"><button class="btn" id="reset">Limpar</button></div>
+<div class="list" id="companyList"></div>
+<p class="muted" style="margin:12px 2px 0">Atenção: estas são empresas fictícias para testar o painel. Nenhum contato real foi pesquisado.</p>
+</section>
+<section class="panel">
+<div class="panel-head"><h2>Detalhes e demonstração</h2><span class="muted" id="selectedLabel">Selecione uma empresa</span></div>
+<div id="detail" class="detail-empty"><div><div class="bigicon">↖</div><strong>Escolha uma empresa na lista</strong><p class="muted">Depois, crie um site demo e prepare a mensagem.</p></div></div>
+<div class="chatbox"><h3>Converse com a IA da Nexo</h3><p class="muted">Nesta versão, o chat simula orientações. A conexão com uma IA real será adicionada depois.</p><div class="chatline"><input id="chatInput" placeholder="Ex.: cria um site mais moderno..." aria-label="Mensagem para a IA"><button class="btn primary" id="chatSend">Enviar</button></div><div id="chatReply" class="muted" style="margin-top:9px"></div></div>
+</section>
+</div>
+<footer>Nexo Art · Protótipo local de demonstração · Não coleta nem envia dados automaticamente.</footer>
+</div>
+<script>
+const companies=[
+{id:1,name:"Sorriso Sul Odontologia",niche:"Dentista",city:"Porto Alegre",phone:"",initials:"SS",desc:"Atendimento odontológico acolhedor e cuidado para toda a família."},
+{id:2,name:"Studio Forma Academia",niche:"Academia",city:"Porto Alegre",phone:"",initials:"SF",desc:"Treinos personalizados para força, saúde e bem-estar."},
+{id:3,name:"Pet Amigo",niche:"Pet shop",city:"Canoas",phone:"",initials:"PA",desc:"Cuidado, carinho e serviços para cães e gatos."},
+{id:4,name:"Linha Fina Tattoo",niche:"Tatuador",city:"Porto Alegre",phone:"",initials:"LF",desc:"Arte autoral, traços personalizados e agendamento de sessões."},
+{id:5,name:"Clínica Dental Jardim",niche:"Dentista",city:"Canoas",phone:"",initials:"DJ",desc:"Saúde bucal com atendimento atencioso e tecnologia moderna."},
+{id:6,name:"Movimento Academia",niche:"Academia",city:"Canoas",phone:"",initials:"MA",desc:"Um espaço para treinar no seu ritmo e alcançar novos objetivos."}
+];
+let selected=null, demos=0;
+const $=id=>document.getElementById(id);
+function renderList(){
+ const q=$("search").value.trim().toLowerCase(),n=$("niche").value,c=$("city").value;
+ const rows=companies.filter(x=>(n==="Todos"||x.niche===n)&&(c==="Todas"||x.city===c)&&(!q||(x.name+" "+x.niche+" "+x.city).toLowerCase().includes(q)));
+ $("companyList").innerHTML=rows.map(x=>`<div class="company ${selected===x.id?"selected":""}" data-id="${x.id}"><div class="avatar">${x.initials}</div><div class="company-main"><strong>${x.name}</strong><span>${x.niche} · ${x.city}</span></div><span class="status">EXEMPLO</span></div>`).join("")||'<p class="muted">Nenhuma empresa corresponde aos filtros.</p>';
+ $("resultCount").textContent=rows.length+" resultado"+(rows.length===1?"":"s");
+ $("countCompanies").textContent=companies.length;
+ document.querySelectorAll(".company").forEach(el=>el.addEventListener("click",()=>{selected=Number(el.dataset.id);renderList();renderDetail()}));
+}
+function renderDetail(){
+ const x=companies.find(x=>x.id===selected);
+ if(!x){$("detail").className="detail-empty";$("detail").innerHTML='<div><div class="bigicon">↖</div><strong>Escolha uma empresa na lista</strong><p class="muted">Depois, crie um site demo e prepare a mensagem.</p></div>';$("selectedLabel").textContent="Selecione uma empresa";return}
+ $("selectedLabel").textContent="Selecionada";
+ $("detail").className="detail";
+ $("detail").innerHTML=`<h3>${x.name}</h3><div class="muted">${x.niche} · ${x.city}</div>
+ <div class="info"><div><small>Site atual</small><b>Não verificado</b></div><div><small>Contato</small><b>Não cadastrado</b></div><div><small>Preço sugerido</small><b>A avaliar</b></div><div><small>Status</small><b>Empresa de exemplo</b></div></div>
+ <p style="font-size:13px;color:var(--muted)">${x.desc}</p>
+ <div class="detail-actions"><button class="btn primary" id="createDemo">✦ Criar site demo</button><button class="btn" id="whatsapp">↗ Preparar WhatsApp</button></div>
+ <div class="notice">Esta é uma demonstração de interface. Não foi confirmada a existência desta empresa, nem se ela possui site. O botão de WhatsApp só abre uma mensagem de exemplo.</div>
+ <div id="demoArea"></div>`;
+ $("createDemo").addEventListener("click",()=>createDemo(x));
+ $("whatsapp").addEventListener("click",()=>prepareWhatsApp(x));
+}
+function createDemo(x){
+ demos++;$("countDemos").textContent=demos;
+ $("demoArea").innerHTML=`<div class="demo"><div class="demo-top"><span>PRÉVIA DO SITE · DEMO</span><span>VISITANTE</span></div><div class="demo-body"><div class="mini-brand">${x.name.toUpperCase()}</div><h4>${x.niche==="Dentista"?"Seu sorriso merece cuidado.":x.niche==="Academia"?"Seu próximo nível começa aqui.":x.niche==="Pet shop"?"Carinho e cuidado para seu melhor amigo.":"Sua ideia, sua arte, sua história."}</h4><p>${x.desc} Conheça nossos serviços e entre em contato para saber mais.</p><span class="demo-cta">Conheça nossos serviços</span></div><div class="demo-features"><div>Atendimento personalizado</div><div>Serviços</div><div>Fale conosco</div></div></div><p class="muted">Demo ilustrativa gerada no navegador. Ainda não está publicada na internet e não tem link público.</p><button class="btn small" id="copyDemoText">Copiar resumo da demo</button>`;
+ $("copyDemoText").addEventListener("click",async()=>{let txt=`Demo ilustrativa para ${x.name}: ${x.desc}`;try{await navigator.clipboard.writeText(txt);alert("Resumo copiado!")}catch(e){prompt("Copie o texto:",txt)}});
+}
+function prepareWhatsApp(x){
+ const msg=`Olá! Tudo bem? Eu sou o Rafael, da Nexo Art. Preparei uma ideia de demonstração de site para ${x.name} e gostaria de saber se você teria interesse em dar uma olhada, sem compromisso. Posso te apresentar?`;
+ const url="https://wa.me/?text="+encodeURIComponent(msg);
+ window.open(url,"_blank","noopener");
+}
+$("niche").addEventListener("change",renderList);$("city").addEventListener("change",renderList);$("search").addEventListener("input",renderList);
+$("reset").addEventListener("click",()=>{$("niche").value="Todos";$("city").value="Todas";$("search").value="";renderList()});
+$("chatSend").addEventListener("click",()=>{const val=$("chatInput").value.trim();if(!val)return;$("chatReply").textContent="Sugestão para a próxima etapa: "+(val.toLowerCase().includes("moderno")?"vamos ajustar o visual com tipografia forte, espaços amplos e uma paleta consistente.":"vamos transformar teu pedido em uma instrução para a IA criadora quando conectarmos o serviço real.")+" Este chat ainda não está conectado a uma IA real.";$("chatInput").value=""});
+$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")$("chatSend").click()});
+renderList();
+</script>
+</body>
+</html>
